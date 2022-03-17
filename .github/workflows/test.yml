@@ -27,6 +27,11 @@ jobs:
               echo "[INFO] Running with profile: signing"
               mvn --batch-mode --settings cfg/settings.xml -P signing clean verify
         env:
-          OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
-          OSSRH_JIRA_PASSWORD: ${{ secrets.OSSRH_JIRA_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Step 4 - Check Project-Version
+        run:  |
+              mkdir tmp/ 
+              export PROJECT_VERSION=`mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec` 
+              tar -C tmp -xvf modules/dist.cli/target/dist.cli-${PROJECT_VERSION}.tar.gz 
+              tmp/bin/cmclient --version | grep -q "^${PROJECT_VERSION}"
