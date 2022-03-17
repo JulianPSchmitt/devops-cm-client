@@ -24,6 +24,8 @@ jobs:
       - name: Step 3 - Verify with Maven
         run:  |
               echo "[INFO] Running with profile: signing"
+              GPG_TTY=$(tty)
+              export GPG_TTY
               mvn --batch-mode -P signing clean verify
         env:
           OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
