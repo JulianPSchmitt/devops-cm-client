@@ -20,12 +20,16 @@ jobs:
           server-password: OSSRH_JIRA_PASSWORD # env variable for token in deploy
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG Passphrase
+
+      - name: Step 2.5 - Test for Error
+        run:  echo "test" | gpg --clearsign     
+
+      - name: Step 3 - Prepare GPG
+        run:  export GPG_TTY=$(tty)    
         
       - name: Step 3 - Verify with Maven
         run:  |
               echo "[INFO] Running with profile: signing"
-              GPG_TTY=$(tty)
-              export GPG_TTY
               mvn --batch-mode -P signing clean verify
         env:
           OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
