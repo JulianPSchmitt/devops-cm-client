@@ -24,7 +24,7 @@ jobs:
       - name: Step 3 - Verify with Maven
         run:  |
               echo "[INFO] Running with profile: signing"
-              mvn --batch-mode --settings settings.xml -P signing clean verify
+              mvn --batch-mode -P signing clean verify
         env:
           OSSRH_JIRA_USERNAME: ${{ secrets.OSSRH_JIRA_USERNAME }}
           OSSRH_JIRA_PASSWORD: ${{ secrets.OSSRH_JIRA_PASSWORD }}
