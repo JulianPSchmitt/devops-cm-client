@@ -21,9 +21,6 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: GPG_PASSPHRASE # env variable for GPG Passphrase
 
-      - name: Step 2.5 - Test for Error
-        run:  echo "test" | gpg --clearsign     
-
       - name: Step 3 - Prepare GPG
         run:  export GPG_TTY=$(tty)    
         
