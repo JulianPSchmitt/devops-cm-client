@@ -1,7 +1,6 @@
 name: Release Notes
 
-on:
-  workflow_dispatch:
+on: [workflow_dispatch]
     
 jobs:
   Notes:
@@ -21,4 +20,3 @@ jobs:
         with:
           command: gitubPublishRelease
           piper-verion: master
-                
