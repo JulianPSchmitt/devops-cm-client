@@ -21,3 +21,4 @@ jobs:
         with:
           command: githubPublishRelease
           piper-version: master
+          flags: --token ${{ secrets.GITHUB_TOKEN }} --version latest
