@@ -20,4 +20,4 @@ jobs:
         uses: SAP/project-piper-action@master
         with:
           command: githubPublishRelease
-          piper-verion: master
+          piper-version: master
