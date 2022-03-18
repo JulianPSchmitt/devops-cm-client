@@ -19,5 +19,5 @@ jobs:
       - name: Step 3 - Publish a Release on Github
         uses: SAP/project-piper-action@master
         with:
-          command: gitubPublishRelease
+          command: githubPublishRelease
           piper-verion: master
